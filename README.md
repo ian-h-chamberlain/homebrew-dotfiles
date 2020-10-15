@@ -1,5 +1,7 @@
 # Dotfiles Tap
 
+![brew test-bot](https://github.com/ian-h-chamberlain/homebrew-dotfiles/workflows/brew%20test-bot/badge.svg)
+
 This repository was created to accompany [ian-h-chamberlain/dotfiles](https://github.com/ian-h-chamberlain/dotfiles). It contains custom formulae for use with Homebrew.
 
 ## How to install
