@@ -1,8 +1,8 @@
-class BoostAT157 < Formula
+class BoostAT169 < Formula
   desc "Collection of portable C++ source libraries"
   homepage "https://www.boost.org"
-  url "https://downloads.sourceforge.net/project/boost/boost/1.57.0/boost_1_57_0.tar.bz2"
-  sha256 "910c8c022a33ccec7f088bd65d4f14b466588dda94ba2124e78b8c57db264967"
+  url "https://downloads.sourceforge.net/project/boost/boost/1.69.0/boost_1_69_0.tar.bz2"
+  sha256 "8f32d4617390d1c2d16f26a27ab60d97807b35440d45891fa340fc2648b04406"
   license "BSL-1.0"
 
   keg_only :versioned_formula
