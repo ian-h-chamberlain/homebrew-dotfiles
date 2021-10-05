@@ -4,10 +4,10 @@ cask "font-input" do
   sha256 :no_check
 
   # the served font is built dynamically, according to the query string;
-  # Customized URL parameters based on builder from https://input.fontbureau.com/download
-  url "https://input.fontbureau.com/build/?basic=1&fontSelection=whole&a=ss&g=ss&i=serifs&l=serifs&zero=slash&asterisk=0&braces=straight&lineHeight=1.2&accept=I+do"
+  # Customized URL parameters based on builder from https://input.djr.com/download
+  url "https://input.djr.com/build/?basic=1&fontSelection=whole&a=ss&g=ss&i=serifs&l=serifs&zero=slash&asterisk=0&braces=straight&lineHeight=1.2&accept=I+do"
   name "Input"
-  homepage "https://input.fontbureau.com/"
+  homepage "https://input.djr.com/"
 
   font "Input_Fonts/InputMono/InputMono/InputMono-Black.ttf"
   font "Input_Fonts/InputMono/InputMono/InputMono-BlackItalic.ttf"
@@ -181,6 +181,6 @@ cask "font-input" do
   caveats <<~EOS
     To use the Input fonts, you must agree to the terms of the license.
 
-      https://input.fontbureau.com/license/
+      https://input.djr.com/license/
   EOS
 end
