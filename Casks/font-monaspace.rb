@@ -232,33 +232,39 @@ cask "font-monaspace" do
   postflight do
     script = <<~PYTHON
       import sys
+      import threading
+
       from fontTools import ttLib
 
       _UNWANTED_LIGATURES = {
         # <<= and <= ligatures
-        "less": ["less_equal.alt", "less_less_equal"],
+        "less": {"less_equal.alt", "less_less_equal"},
         # >>= ligature
-        "greater": ["greater_greater_equal"],
+        "greater": {"greater_greater_equal"},
       }
+
+      # https://learn.microsoft.com/en-us/typography/opentype/spec/gsub#gsubLookupTypeEnum
+      _GSUB_LIGATURE = 4
 
       for font_name in sys.argv[1:]:
         with ttLib.TTFont(font_name) as font:
-          for start, result in _UNWANTED_LIGATURES.items():
-            for lookup in font["GSUB"].table.LookupList.Lookup:
-              for subst in lookup.SubTable:
-                if not hasattr(subst, "ligatures"):
-                  continue
+          for lookup in font["GSUB"].table.LookupList.Lookup:
+            for subst in lookup.SubTable:
+              if subst.LookupType != _GSUB_LIGATURE:
+                continue
 
-                if start not in subst.ligatures:
+              for start, result in _UNWANTED_LIGATURES.items():
+                try:
+                  ligatures = subst.ligatures[start]
+                except KeyError:
                   continue
 
                 subst.ligatures[start] = [
-                  lig
-                  for lig in subst.ligatures[start]
-                  if lig.LigGlyph not in result
+                  lig for lig in ligatures if lig.LigGlyph not in result
                 ]
 
           font.save(font_name)
+
       PYTHON
 
     fonttools_libexec = Formula["fonttools"].opt_libexec
