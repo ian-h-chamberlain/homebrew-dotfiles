@@ -265,14 +265,14 @@ cask "font-monaspace" do
 
           font.save(font_name)
 
-      PYTHON
+    PYTHON
 
     fonttools_libexec = Formula["fonttools"].opt_libexec
     system_command fonttools_libexec/"bin/python",
-      args: [
-        "-c", script,
-        *Dir.glob([staged_path/"**/*.otf", staged_path/"**/*.ttf"]),
-      ]
+                   args: [
+                     "-c", script,
+                     *Dir.glob([staged_path/"**/*.otf", staged_path/"**/*.ttf"])
+                   ]
   end
 
   # No zap stanza required
